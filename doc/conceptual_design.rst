@@ -8,6 +8,11 @@ Conceptual design
    The audience for the conceptual design is the physicist, algorithm author, or framework program runner.
    A more technical description of the intended design is given :ref:`here <technical_design:Technical design>`.
 
+.. admonition:: Chris Green
+   :class: admonition-chg
+
+   In general, I would suggest avoiding generic reference labels like "here," or "link."
+
 Preliminaries
 =============
 

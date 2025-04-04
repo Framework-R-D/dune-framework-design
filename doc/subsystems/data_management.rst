@@ -1,5 +1,5 @@
 Data management
-^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
 
 .. todo::
    - Data (product) set definitions

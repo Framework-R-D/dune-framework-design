@@ -9,12 +9,18 @@ In general, Phlex supports the registration of C++ algorithms with function sign
    return_type function_name(P1, ..., Pn, R1, ..., Rm) [qualifiers];
 
 where the types :cpp:`P1, ..., Pn` denote types of data products and the types :cpp:`R1, ..., Rm` indicate resources.
+
+.. admonition:: Chris Green
+   :class: admonition-chg
+
+   Should "resources" be a term with a glossary definition?
+
 We will first discuss the :ref:`data-product and resource types <algorithms:Input parameters>`, followed by the :ref:`return type <algorithms:Return types>`, and then the :ref:`function name and optional qualifers <algorithms:Function names and qualifiers>`.
 
 Input parameters
 ----------------
 
-A data product of type :cpp:`P` can be presented to a C++ algorithm if the corresponding input parameter (i.e. the relevant :cpp:`P1, ..., PN` type) is one of the following:
+A data product of type :cpp:`P` may be presented to a C++ algorithm if the corresponding input parameter (i.e. the relevant :cpp:`P1, ..., PN` type) is one of the following:
 
 - :cpp:`P const&` — read-only access to a data product provided through a reference
 - :cpp:`P const*` — read-only access to a data product provided through a pointer
@@ -23,7 +29,7 @@ A data product of type :cpp:`P` can be presented to a C++ algorithm if the corre
 
 For each of these cases, the data product itself remains immutable.
 
-Whereas data products are allowed to be copied, resources of type :cpp:`R` cannot be copied.
+Whereas data products may to be copied, resources of type :cpp:`R` may not.
 The following types are therefore supported:
 
 - :cpp:`R const&` — read-only access to a resource provided through a reference
@@ -103,13 +109,33 @@ in terms of the C++ *registration stanza*:
    }
 
 The registration stanza is included in C++ file called a :term:`module`, which is a compiled library that is dynamically loadable by Phlex.
+
+.. admonition:: Chris Green
+   :class: admonition-chg
+
+   Do you mean a C++ module, or a linker-defined module? It seems a bit strange to describe a, "C++ file" as a "compiled library ..."
+
 The stanza is introduced by an *opener*—e.g. :cpp:`PHLEX_REGISTER_ALGORITHMS(m)`—followed by a *registration block*, a block of code between two curly braces that contains one or more *registration statements*.
 A registration statement contains a series of chained *clauses*, starting with a :cpp:`with(...)` clause.
+
+.. admonition:: Chris Green
+   :class: admonition-chg
+
+   What significance does the ordering have beyond the first :cpp:`with(...)` or :cpp:`make(...)`?
+   Is this enforced?
+   If so, is this at compile time, configuration time or run time?
+
 In the case of a transform, six pieces of information are provided in the registration statement:
 
 1. The algorithm/HOF operator to be used
 2. The maximum number of CPU threads the framework can use when invoking the algorithm :dune:`24.2 Specification of algorithm's maximum number of CPU threads`
 3. The HOF to be used (generally expressed as an active verb)
+
+   .. admonition:: Chris Green
+      :class: admonition-chg
+
+      I think I know what is meant here, but could we make it a little clearer, e.g. "The name of the HOF to be used, which generally should be expressed as an action, e.g. ``make_tracks`` or ``calculate_de_dx``?"
+
 4. The product specification(s) from which to form the input data product sequence :dune:`28 Specification of data products required by an algorithm`
 5. The specification(s) of the data product(s) created by the algorithm :dune:`29 Specification of data products created by an algorithm`
 6. The data category where the input data products are found and the output data products are to be placed
@@ -157,7 +183,18 @@ To do this, an extra argument (e.g. :cpp:`config`) is passed to the registration
    The :cpp:`config` C++ object provides access to the configuration parameters corresponding **only to the module containing the registration stanza.**
    In other words, one registration stanza may not access the configuration parameters of another registration stanza.
 
-Except for the specification of :cpp:`make_tracks` and the HOF :cpp:`transform`, all other pieces of information may be provided through the configuration.
+   .. admonition:: Chris Green
+      :class: admonition-chg
+
+      Should we provide some limited access to framework configuration of interest (e.g. via an optional supplemental argument), such as global verbosity and/or debug flags?
+
+
+Except for the specification of :cpp:`make_tracks` as the algorithm to be invoked, and :cpp:`transform` as the HOF, all other pieces of information may be provided through the configuration.
+
+.. admonition:: Chris Green
+   :class: admonition-chg
+
+   What about :cpp:`for_each()`? Would it be simpler to list only :cpp:`make_tracks` and "C++ operations on the :cpp:m object" as exceptions?
 
 Framework dependence in registration code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -233,6 +270,12 @@ where the desired overload is selected based on the :cpp:`double` argument to th
 
 .. [#f1] In C++, the function signature corresponds to the function *declaration*, for which the type :cpp:`P` and :cpp:`P const` are treated identically by the compiler.
          However, for the function implementation or *definition*, algorithm authors are encouraged to use :cpp:`P const` to help guarantee the immutability of data.
+
+         .. admonition:: Chris Green
+            :class: admonition-chg
+
+            Should this have a reference to an explanation of this at e.g. ``cppreference.com``?
+
 .. [#f2] Phlex permits the registration of member functions that do not use the :cpp:`const` qualifier.
-         However, using such functions is highly discouraged as it indicates a class instance is modifiable during member-function execution, which is at odds with Phlex's functional-programming paradigm.
+         However, using such functions is highly discouraged as it indicates a class instance is modifiable during member-function execution, which is at odds with Phlex's functional-programming paradigm, and DUNE's stated desire for re[rpducibility.
 .. [#f3] Equivalently, one can cast :cpp:`std::sqrt` to the desired overload by using the obscure syntax :cpp:`m.with(static_cast<double(*)(double)>(std::sqrt)) ... ;` .

@@ -31,7 +31,7 @@ templates_path = ['_templates']
 
 extensions.append('sphinx.ext.todo')
 todo_include_todos = True
-todo_emit_warnings = True
+todo_emit_warnings = False
 
 # -- Rendering LaTeX math expressions-----------------------------------------
 
@@ -69,6 +69,7 @@ rst_prolog ="""
 html_theme = 'bizstyle'
 html_logo = 'phlex-logo.svg'
 html_static_path = ['_static']
+html_style='phlexframework.css'
 
 
 # -- Options for LaTeX output -------------------------------------------------

@@ -1,0 +1,6 @@
+/* Import the Sphinx theme style.  */
+@import url("default.css");
+
+div.admonition-chg {
+    background-color: burlywood;
+}

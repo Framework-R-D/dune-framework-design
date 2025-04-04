@@ -1014,7 +1014,7 @@ Jama Connect entry: `DUNE STKH #154 <https://fnal-prod.jamacloud.com/perspective
     +--------------+-------------------------------------------------------+
 
 24.4 Specification of algorithm's GPU resources
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Jama Connect entry: `DUNE STKH #153 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=15886>`__
 
@@ -1033,7 +1033,7 @@ Jama Connect entry: `DUNE STKH #153 <https://fnal-prod.jamacloud.com/perspective
     +--------------+-------------------------------------------------------+
 
 24.4.1 Remote GPU algorithm support
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Jama Connect entry: `DUNE STKH #42 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14607>`__
 
@@ -1054,7 +1054,7 @@ Jama Connect entry: `DUNE STKH #42 <https://fnal-prod.jamacloud.com/perspective.
     +--------------+-------------------------------------------------------+
 
 24.4.2 Local GPU algorithm support
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Jama Connect entry: `DUNE STKH #41 <https://fnal-prod.jamacloud.com/perspective.req?projectId=63&docId=14602>`__
 

@@ -44,7 +44,7 @@ Sequences of data and higher-order functions
 
 Particle physics results are obtained by performing statistical analysis on sequences of data.
 Such analysis typically involves repeated invocations of the same kind of operation.
-For example, a relatively simple result is calculating the average of :math:`n` numbers:
+For example, a relatively simple result is calculating the arithmetic mean of :math:`n` numbers:
 
 .. math::
    \overline{b} = \frac{1}{n}\sum_{i \in \mathcal{I}} b_i
@@ -58,6 +58,11 @@ In particular, the average of :math:`n` numbers can be expressed as:
    \overline{b} = \mbox{avg} \left\{(b_i)_{i \in \mathcal{I}}\right\} = \frac{1}{n} \mbox{fold}(+, (b_i)_{i \in \mathcal{I}})
 
 where the fold accepts a binary operator (:math:`+` in this case) that is applied to pairs of (usually consecutive) elements of the provided sequence.
+
+.. admonition:: Chris Green
+   :class: admonition-chg
+
+   This seems overly simplified: should we mention a running sum rather than just, "pairs of ... elements of the provided sequence?"
 
 The fold is an example of a *higher-order function* (HOF) [Wiki-hof]_ that accepts a sequence and an operator applied to elements of that sequence.
 
@@ -119,10 +124,13 @@ As discussed later, each HOF's *operator* is an :term:`algorithm` registered wit
 | :ref:`Unfold <hof_operators:Unfolds>`                | :math:`p: D \rightarrow \mbox{Boolean}` | .. math::                                        | :math:`\dim(c) > \dim(d)`  | :math:`|c| > |d|`    |
 |                                                      |                                         |    :no-wrap:                                     |                            |                      |
 |                                                      |                                         |                                                  |                            |                      |
-|                                                      +-----------------------------------------+    \(                                            |                            |                      |
-|                                                      | :math:`q: D \rightarrow D \times C`     |    \underbrace{(d_{i_1\dots i_m})}_d \rightarrow |                            |                      |
+|                                                      | .. admonition:: Chris Green             |    \(                                            |                            |                      |
+|                                                      |    :class: admonition-chg               |    \underbrace{(d_{i_1\dots i_m})}_d \rightarrow |                            |                      |
 |                                                      |                                         |    \underbrace{(c_{i_1\dots i_n})}_c             |                            |                      |
-|                                                      |                                         |    \)                                            |                            |                      |
+|                                                      |    I don't understand this unfold form. |    \)                                            |                            |                      |
+|                                                      +-----------------------------------------+                                                  |                            |                      |
+|                                                      | :math:`q: D \rightarrow D \times C`     |                                                  |                            |                      |
+|                                                      |                                         |                                                  |                            |                      |
 +------------------------------------------------------+-----------------------------------------+--------------------------------------------------+----------------------------+----------------------+
 | :ref:`Filter <hof_operators:Filters and predicates>` | :math:`p: A \rightarrow \text{Boolean}` | .. math::                                        | :math:`\dim(a') = \dim(a)` | :math:`|a'| \le |a|` |
 |                                                      |                                         |    :no-wrap:                                     |                            |                      |
@@ -147,6 +155,11 @@ In C++, this would be denoted by the return statement :cpp:`return;` whereas in 
 
 Phlex will likely support other higher order functions as well, such as a sliding window.
 
+.. admonition:: Chris Green
+   :class: admonition-chg
+
+   I'm not sure about the form of the above: if we're going to support a sliding window, then it should have a line in the preceeding table. If we merely wish to state that Phex may be extended straightforwardly to support other higher order functions, then we should say that.
+
 Difficulties with functional programming
 ----------------------------------------
 
@@ -156,7 +169,7 @@ We argue, though, that physicists often think in terms of functional programming
 It is not until those processing steps need to be implemented that the functional steps are translated into a different programming paradigm (often *procedural*).
 
 Phlex aims to restore the functional programming approach as the natural way of expressing the data-processing to be performed.
-By leveraging commonly used processing patterns (see next section on :ref:`higher-order functions <programming_paradigm:Sequences of data and higher-order functions>`), any awkwardness due to functional programming is largely alleviated.
+By leveraging commonly used processing patterns (see next section on :ref:`higher-order functions <programming_paradigm:Sequences of data and higher-order functions>`), we can mitigate any awkwardness due to initial unfamiliarity with functional programming paradigms.
 
 .. rubric:: Footnotes
 

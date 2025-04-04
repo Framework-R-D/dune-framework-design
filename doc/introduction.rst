@@ -11,7 +11,7 @@ Wikipedia decently defines a software framework as [Wiki-framework]_:
   *an abstraction in which software, providing generic functionality, can be selectively changed by additional user-written code, thus providing application-specific software.*
 
 In a HEP context, a user “plugs in” their code to a framework, often through dynamically loaded libraries called *plugins*.
-Although not required, this often means that the framework owns program's `main(...)` function, which calls user code under the covers.
+Although not required, this often means that the framework provides a program's `main(...)` function, which (directly or indirectly) invokes user code as configured at appropriate points in the program's execution.
 
 Frameworks are typically used in a high-level trigger environment, for reconstructing physics objects from detector signals, or for simulating physics processes.
 Many analysis needs can also be met by a data-processing framework.
@@ -21,8 +21,18 @@ Phlex, therefore, aims to satisfy the data-processing needs of only physics reco
 Requirements process
 ====================
 
+.. admonition:: Chris Green
+   :class: admonition-chg
+
+   Do we need to cite an introductory source that explains these concepts, or are we assuming familiarity?
+
 Phlex is designed to meet *stakeholder requirements* that are established and owned by the DUNE experiment.
 The Phlex design may additionally satisfy *system requirements* in support of the stakeholder requirements [#f1]_.
+
+.. admonition:: Chris Green
+   :class: admonition-chg
+
+   Apparently there is a Sphinx extension `Sphinx-Needs <https://sphinxcontrib-needs.readthedocs.io/en/latest/>`__ which may help with referring to and cross-referencing requirements, etc.
 
 The stakeholder requirements are listed in :ref:`an appendix <requirements:Framework requirements>` for convenience.
 To more easily connect the design to the requirements, any design aspect influenced by specific requirements contains bracketed references to those requirements (e.g. :dune:`1 Algorithm Decomposability`).
@@ -34,9 +44,9 @@ A framework is a tool that aids the scientific process of inferring accurate phy
 Maintaining data integrity is therefore paramount, as is retaining an accounting of how physics results were obtained from that data.
 The Phlex design therefore:
 
-- treats all data presented to (or created by) Phlex as immutable during any Phlex program,
+- treats all data presented to (or created by) Phlex as immutable for the remainder of a Phlex program's execution,
 - requires recording the :term:`provenance` of every created :term:`data product` :dune:`51 Provenance discovery`, and
-- to the extent possible ensures the :term:`reproducible` creation of data products.
+- enables, and---to the extent possible---ensures the :term:`reproducible` creation of data products.
 
 Programming languages
 =====================

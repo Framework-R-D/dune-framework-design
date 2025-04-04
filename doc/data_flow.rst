@@ -47,6 +47,11 @@ The data-flow discussion in the previous section naturally maps to applying the 
 The above graph does not specify an implementation---assuming :math:`f` and :math:`g` are :ref:`pure functions<programming_paradigm:Pure functions>`, the same result is obtained if (a) full sequences are passed between the nodes, or (b) one element per sequence is passed at a time.
 Whether option (a) or (b) is chosen as the processing implementation depends on the data and the overall constraints on the program.
 
+.. admonition:: Chris Green
+   :class: admonition-chg
+
+   Is this decided by the framework itself, by user code or by configuration?
+
 One benefit to using a graph representation using data sequences and higher-order functions is the ability to easily express folds and unfolds.
 As an illustration, consider the calculation of a sum of squares for all integers from 1 through :math:`n`:
 
@@ -77,5 +82,5 @@ The vast majority of graphs included in this design document adopt the sequence-
 .. rubric:: Footnotes
 
 .. [#f1] Treating functions as nodes and data as edges is a function-centric view of the graph.
-         It is also possible to invert the view of the graph where the data are treated as nodes and the functions as edges; this is the data-centric graph, which is the *line digraph* of the function-centric graph.
+         It is also possible to invert the view of the graph such that the data are treated as nodes and the functions as edges; this is the data-centric graph, which is the *line digraph* of the function-centric graph.
 .. [#f2] In Haskell (and, correspondingly, in category theory), this transformation is achieved through the `List` functor.

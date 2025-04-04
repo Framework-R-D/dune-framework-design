@@ -6,7 +6,7 @@ Data products
 
 .. todo:: Describe what defining data products means.
 
-Framework users are able to define their own data products :dune:`11.1 Definition of data products`.
+Framework users are expected to define their own data products :dune:`11.1 Definition of data products`.
 
 Phlex does not require that the in-memory representation of a data product shall be the same as its persistent representation :dune:`2 Data Product Representation`.
 In some cases, it may even be advantageous to have multiple in-memory representations for the same data product.
